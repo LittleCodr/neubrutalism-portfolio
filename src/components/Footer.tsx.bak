@@ -1,0 +1,27 @@
+{
+  // Previous Footer.tsx content with updated social links and removed policies
+  const socialLinks = [
+    {
+      platform: "LinkedIn",
+      url: "https://www.linkedin.com/in/littlecodr/",
+      icon: "linkedin"
+    },
+    {
+      platform: "GitHub",
+      url: "https://github.com/LittleCodr",
+      icon: "github"
+    },
+    {
+      platform: "Twitter",
+      url: "https://x.com/mindflayer_69",
+      icon: "twitter"
+    }
+  ];
+
+  // Update the footer content to remove policies
+  <div className="footer-animate text-center">
+    <p className="text-white opacity-70">
+      &copy; {new Date().getFullYear()} Mayank Agrawal. All rights reserved.
+    </p>
+  </div>
+}

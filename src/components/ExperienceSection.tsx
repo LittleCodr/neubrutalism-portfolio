@@ -57,8 +57,8 @@ const ExperienceSection = () => {
   return (
     <section
       id="experience"
-      className="py-20 md:py-32 relative"
-      style={{ backgroundColor: 'var(--tertiary)' }}
+      className="py-20 md:py-32 relative grid-bg"
+      style={{ backgroundColor: 'var(--dark)' }}
     >
       {/* Background shapes */}
       <div className="absolute inset-0 overflow-hidden">
@@ -73,7 +73,7 @@ const ExperienceSection = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <h2 className="experience-animate text-4xl md:text-5xl font-bold mb-16 text-center">
+        <h2 className="experience-animate text-4xl md:text-5xl font-bold mb-16 text-center neon-text">
           <span className="relative inline-block">
             Experience
             <span 
@@ -86,8 +86,8 @@ const ExperienceSection = () => {
         <div className="relative max-w-4xl mx-auto pl-8 md:pl-0">
           {/* Timeline connector (the vertical line) */}
           <div 
-            className="timeline-connector absolute left-0 md:left-1/2 top-0 w-1 h-full bg-black transform md:-translate-x-1/2"
-            style={{ zIndex: 0 }}
+            className="timeline-connector absolute left-0 md:left-1/2 top-0 w-1 h-full transform md:-translate-x-1/2"
+            style={{ zIndex: 0, backgroundColor: 'rgba(255,255,255,0.12)' }}
           ></div>
 
           {experiences.map((exp, index) => (
@@ -105,12 +105,12 @@ const ExperienceSection = () => {
               
               {/* Experience card */}
               <div 
-                className={`md:w-5/12 neubrutalism-box bg-white p-6 ${
+                className={`md:w-5/12 neubrutalism-box glass p-6 ${
                   index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'
                 }`}
                 style={{ marginLeft: index % 2 === 0 ? '2rem' : '', marginRight: index % 2 !== 0 ? '2rem' : '' }}
               >
-                <h3 className="text-xl font-bold" style={{ color: 'var(--dark)' }}>
+                <h3 className="text-xl font-bold" style={{ color: 'var(--light)' }}>
                   {exp.position}
                 </h3>
                 <div className="flex justify-between items-center mb-4">
@@ -119,7 +119,7 @@ const ExperienceSection = () => {
                   </h4>
                   <span className="text-sm font-medium">{exp.duration}</span>
                 </div>
-                <p className="text-gray-700">
+                <p className="text-white/80">
                   {exp.description}
                 </p>
               </div>

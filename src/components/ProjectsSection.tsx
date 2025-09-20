@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ExternalLink, Github } from 'lucide-react';
 import { useGSAP } from '../hooks/useGSAP';
@@ -78,20 +78,20 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="py-20 md:py-32"
-      style={{ backgroundColor: 'var(--accent)', position: 'relative' }}
+      className="py-20 md:py-32 relative grid-bg"
+      style={{ backgroundColor: 'var(--dark)' }}
     >
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-24 h-24 md:w-48 md:h-48 bg-tertiary -translate-y-1/2"></div>
       <div className="absolute top-1/4 left-0 w-16 h-16 md:w-32 md:h-32 bg-primary -translate-x-1/2"></div>
 
       <div className="container mx-auto px-6">
-        <h2 className="project-animate text-4xl md:text-5xl font-bold mb-16 text-center">
+        <h2 className="project-animate text-4xl md:text-5xl font-bold mb-16 text-center neon-text">
           <span className="relative inline-block">
             My Projects
             <span 
-              className="absolute -bottom-2 left-0 w-full h-3 bg-primary" 
-              style={{ zIndex: -1 }}
+              className="absolute -bottom-2 left-0 w-full h-3" 
+              style={{ backgroundColor: 'var(--primary)', zIndex: -1, opacity: 0.5 }}
             ></span>
           </span>
         </h2>
@@ -100,7 +100,7 @@ const ProjectsSection = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="project-animate project-card neubrutalism-box bg-white overflow-hidden"
+              className="project-animate project-card neubrutalism-box glass overflow-hidden"
             >
               <div className="overflow-hidden h-56">
                 <img
@@ -111,11 +111,11 @@ const ProjectsSection = () => {
               </div>
               
               <div className="p-6">
-                <h3 className="text-2xl font-bold mb-3" style={{ color: 'var(--dark)' }}>
+                <h3 className="text-2xl font-bold mb-3" style={{ color: 'var(--light)' }}>
                   {project.title}
                 </h3>
                 
-                <p className="text-gray-700 mb-4">
+                <p className="text-white/80 mb-4">
                   {project.description}
                 </p>
                 
@@ -123,10 +123,11 @@ const ProjectsSection = () => {
                   {project.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="project-tag px-3 py-1 text-sm font-medium border-2 border-black transition-all"
+                      className="project-tag px-3 py-1 text-sm font-medium transition-all"
                       style={{ 
                         backgroundColor: ['var(--primary)', 'var(--secondary)', 'var(--tertiary)', 'var(--accent)'][index % 4],
-                        opacity: 0.7
+                        opacity: 0.8,
+                        border: '1px solid rgba(255,255,255,0.12)'
                       }}
                     >
                       {tag}
@@ -137,7 +138,7 @@ const ProjectsSection = () => {
                 <div className="flex gap-4">
                   <a
                     href={project.link}
-                    className="neubrutalism-button flex items-center gap-2 text-sm"
+                    className="neubrutalism-button flex items-center gap-2 text-sm text-black"
                     style={{ backgroundColor: 'var(--tertiary)' }}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -148,8 +149,8 @@ const ProjectsSection = () => {
                   
                   <a
                     href="#"
-                    className="neubrutalism-button flex items-center gap-2 text-sm"
-                    style={{ backgroundColor: 'var(--light)' }}
+                    className="neubrutalism-button flex items-center gap-2 text-sm text-white"
+                    style={{ backgroundColor: 'var(--primary)' }}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

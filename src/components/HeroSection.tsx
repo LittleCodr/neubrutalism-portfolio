@@ -1,10 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ChevronDown } from 'lucide-react';
 import { useGSAP } from '../hooks/useGSAP';
 import ThreeScene from './ThreeScene';
 
 const HeroSection = () => {
+  const [enable3D, setEnable3D] = useState<boolean>(() => {
+    try {
+      const flag = localStorage.getItem('disable3D');
+      // Default to disabled for isolation; set flag if not present
+      if (flag === null) localStorage.setItem('disable3D', '1');
+      return flag === '0';
+    } catch {
+      return false;
+    }
+  });
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -18,6 +28,14 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
+    // Check if 3D is disabled via ErrorBoundary button or manual flag
+    try {
+      const flag = localStorage.getItem('disable3D');
+      setEnable3D(flag === '0');
+    } catch {}
+    // dev hint
+    try { console.info('3D enabled?', enable3D, 'Toggle with localStorage.setItem("disable3D", "0"|"1"); then location.reload()'); } catch {}
+
     const tl = gsap.timeline();
 
     tl.fromTo(
@@ -63,10 +81,12 @@ const HeroSection = () => {
       className="min-h-screen relative flex flex-col justify-center items-center overflow-hidden grid-bg"
       style={{ backgroundColor: 'var(--dark)' }}
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 -z-10">
-        <ThreeScene />
-      </div>
+      {/* 3D Background (toggleable) */}
+      {enable3D && (
+        <div className="absolute inset-0 -z-10">
+          <ThreeScene />
+        </div>
+      )}
       {/* Gradient overlay for readability */}
       <div className="absolute inset-0 -z-10 pointer-events-none" style={{
         background: 'radial-gradient(800px 400px at 70% 0%, rgba(11,15,20,0) 0%, rgba(11,15,20,0.4) 60%, rgba(11,15,20,0.75) 100%)'

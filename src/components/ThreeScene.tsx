@@ -35,11 +35,18 @@ const ThreeScene: React.FC = () => {
     fetch('/models/model.glb', { method: 'HEAD' })
       .then((res) => {
         if (!mounted) return;
-        setHasModel(res.ok);
+        const ok = !!res && res.ok;
+        setHasModel(ok);
+        if (ok) {
+          console.info('[ThreeScene] GLB found at /models/model.glb');
+        } else {
+          console.info('[ThreeScene] No GLB found, using neon knot fallback');
+        }
       })
       .catch(() => {
         if (!mounted) return;
         setHasModel(false);
+        console.warn('[ThreeScene] HEAD check failed; using neon knot fallback');
       });
     return () => {
       mounted = false;
@@ -47,7 +54,11 @@ const ThreeScene: React.FC = () => {
   }, []);
 
   return (
-    <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+    <Canvas
+      camera={{ position: [0, 0, 5], fov: 50 }}
+      gl={{ antialias: true, powerPreference: 'high-performance' }}
+      dpr={[1, 1.5]}
+    >
       <color attach="background" args={[0, 0, 0]} />
       <ambientLight intensity={0.2} />
       <pointLight position={[5, 5, 5]} intensity={1.0} color={'#06b6d4'} />

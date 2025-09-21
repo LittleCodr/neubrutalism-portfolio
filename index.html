@@ -14,6 +14,7 @@
         background-color: #0b0f14;
       }
       
+      /* TEMP: disable loader to prevent overlay issues during debugging */
       .loader {
         position: fixed;
         top: 0;
@@ -26,6 +27,7 @@
         align-items: center;
         z-index: 9999;
         transition: opacity 0.5s ease-out;
+        display: none; /* TEMP: keep hidden */
       }
       
       .loader-content {
@@ -49,38 +51,11 @@
     </style>
   </head>
   <body>
-    <!-- Loader overlay -->
-    <div class="loader" id="loader">
-      <div class="loader-content">
-        <div class="loader-circle"></div>
-        <h2 style="font-family: sans-serif; color: #333;">Loading Portfolio</h2>
-      </div>
-    </div>
+    <!-- Loader overlay (TEMP disabled) -->
+    <div class="loader" id="loader" style="display:none"></div>
     
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      // Make body visible ASAP on DOMContentLoaded
-      document.addEventListener('DOMContentLoaded', function() {
-        const loader = document.getElementById('loader');
-        document.body.style.opacity = '1';
-        if (loader) {
-          loader.style.opacity = '0';
-          setTimeout(() => {
-            loader.style.display = 'none';
-          }, 500);
-        }
-      });
-
-      // Fallback on full load just in case
-      window.addEventListener('load', function() {
-        const loader = document.getElementById('loader');
-        document.body.style.opacity = '1';
-        if (loader) {
-          loader.style.opacity = '0';
-          setTimeout(() => (loader.style.display = 'none'), 500);
-        }
-      });
-    </script>
+    <!-- TEMP: no loader script -->
   </body>
 </html>

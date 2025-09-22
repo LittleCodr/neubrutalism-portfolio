@@ -83,7 +83,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile Navigation Toggle */}
+        {/* Mobsile Navigation Toggle */}
         <button 
           className="md:hidden neubrutalism-button glass"
           onClick={() => setIsOpen(!isOpen)}

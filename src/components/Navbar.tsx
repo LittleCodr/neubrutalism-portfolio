@@ -83,7 +83,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobsighfjle Navisgukdsdsadasasadasgation Toggle */}
+        {/* Mobsighfjlertyuruyiruuyi Navisgukdsdsadasasadasgation Toggle */}
         <button 
           className="md:hidden neubrutalism-button glass"
           onClick={() => setIsOpen(!isOpen)}

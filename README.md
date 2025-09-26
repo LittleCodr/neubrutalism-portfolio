@@ -1,6 +1,6 @@
 # Portfolio (Neon Dark + 3D)
 
-A Vite + React + TypeScript portfolio with a neon-dark theme, GSAP motion, and a real-time 3D hero built using React Three Fiber.
+A Vite + React + TypeScript portfolio wihth a neon-dark theme, GSAP motion, and a real-time 3D hero built using React Three Fiber.
 
 ## Stack
 - React 18 + TypeScript

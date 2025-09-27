@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-
-function App() {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '', rating: 5 });
-  const [submitStatus, setSubmitStatus] = useState('');
+import { motion, AnimatePresence } from 'framer-motion';
+import './App.css';
+import FloatingIslands from './components/FloatingIslands';
+import AIChat from './components/AIChat';
+import VoiceCommand from './components/VoiceCommand';
+import Collaboration from './components/Collaboration';
+import { Hero, About, Skills, Projects, Contact } from './components/sections';
   const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, vx: number, vy: number, color: string}>>([]);
   const [isHovered, setIsHovered] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -173,8 +173,25 @@ function App() {
       color: '#e5e7eb', 
       fontFamily: 'system-ui, -apple-system, sans-serif',
       position: 'relative',
-      overflow: 'hidden'
-    }}>
+      overflow: 'hidden',
+      '--gradient-1': '#7c3aed',
+      '--gradient-2': '#06b6d4',
+      '--gradient-3': '#22c55e',
+      '--gradient-4': '#f59e0b',
+      '--gradient-5': '#ef4444'
+    } as React.CSSProperties}>
+      
+      {/* 3D Background */}
+      <FloatingIslands />
+      
+      {/* AI Assistant */}
+      <AIChat />
+      
+      {/* Voice Command */}
+      <VoiceCommand />
+      
+      {/* Collaboration */}
+      <Collaboration />
       {/* Sexy Mouse Cursor Effect */}
       <div style={{
         position: 'fixed',
@@ -933,5 +950,68 @@ function App() {
     </div>
   );
 }
+
+// Add global styles for the new components
+const globalStyles = `
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar for the entire app */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--gradient-4), var(--gradient-5));
+  }
+  
+  /* Custom selection color */
+  ::selection {
+    background: rgba(124, 58, 237, 0.3);
+    color: white;
+  }
+  
+  /* Custom focus styles */
+  *:focus {
+    outline: 2px solid rgba(124, 58, 237, 0.5);
+    outline-offset: 2px;
+  }
+  
+  /* Animation keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+`;
+
+// Add global styles to the document
+const styleElement = document.createElement('style');
+styleElement.innerHTML = globalStyles;
+document.head.appendChild(styleElement);
 
 export default App;

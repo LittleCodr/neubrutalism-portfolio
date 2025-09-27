@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.3.0",
+    "framer-motion": "^12.23.22",
     "gsap": "^3.12.5",
     "lucide-react": "^0.344.0",
     "react": "^18.2.0",
